@@ -1,6 +1,8 @@
-# ecolimp
+# Primera aproixmación VUE
 
-> Proyecto para la empresa Ecolimp
+> El objetivo es lograr integrar Vue con Semantic UI
+
+> Proyecto creado con la CLI de Vue
 
 ## Build Setup
 
