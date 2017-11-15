@@ -23,6 +23,7 @@
             <span>Parametro en padre: {{parametro}}</span>
             <input type="text" v-model="parametro">
             <primer-componente v-bind:parametro.sync="parametro"></primer-componente>
+            <prueba-component></prueba-component>
         </div>
     </div>
 </template>
