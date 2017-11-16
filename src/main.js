@@ -7,6 +7,8 @@ import './components/PruebaComponent.js'
 import HttpComponent from './components/HttpComponent/HttpComponent.vue'
 import '../semantic/dist/semantic.min.css'
 
+require('semantic')
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

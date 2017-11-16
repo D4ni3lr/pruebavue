@@ -1,8 +1,5 @@
 <template src="./SemanticComponent.html"></template>
 <script>
-  import jQuery from 'jquery'
-
-  require('semantic')
   export default {
     data () {
       return {
@@ -10,7 +7,7 @@
       }
     },
     mounted: function () {
-      jQuery(this.$el).find('.dropdown').dropdown()
+      window.jQuery(this.$el).find('.dropdown').dropdown()
     }
   }
 </script>

@@ -2,6 +2,7 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
+const webpack = require('webpack')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
@@ -74,6 +75,16 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: require.resolve('jquery'),
+        use: [{
+          loader: 'expose-loader',
+          options: 'jQuery'
+        },{
+          loader: 'expose-loader',
+          options: '$'
+        }]
       }
     ]
   },
