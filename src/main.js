@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import './components/PruebaComponent.js'
+import HttpComponent from './components/HttpComponent/HttpComponent.vue'
 
 Vue.config.productionTip = false
 
@@ -12,5 +13,5 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App, HttpComponent }
 })

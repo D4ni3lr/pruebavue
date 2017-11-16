@@ -1,0 +1,9 @@
+<div class="compontnPrueba">
+    <h1>Resultado de una peticion http</h1>
+    <div class="loading" v-if="loading">
+        Cargando...
+    </div>
+    <ul>
+        <li v-for="dato in datos" v-text="dato.title"></li>
+    </ul>
+</div>

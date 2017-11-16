@@ -24,6 +24,8 @@
             <input type="text" v-model="parametro">
             <primer-componente v-bind:parametro.sync="parametro"></primer-componente>
             <prueba-component></prueba-component>
+            <http-component></http-component>
+            <jquery-component></jquery-component>
         </div>
     </div>
 </template>
@@ -31,6 +33,8 @@
 <script>
   import intro from './intro.vue'
   import PrimerComponente from './PrimerComponente.vue'
+  import HttpComponent from './HttpComponent/HttpComponent.vue'
+  import JqueryComponent from './JqueryComponent/JqueryComponent.vue'
 
   export default {
     name: 'HelloWorld',
@@ -41,8 +45,10 @@
       }
     },
     components: {
+      HttpComponent,
       intro,
-      PrimerComponente
+      PrimerComponente,
+      JqueryComponent
     }
   }
 </script>
