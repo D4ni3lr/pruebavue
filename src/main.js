@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import './components/PruebaComponent.js'
 import HttpComponent from './components/HttpComponent/HttpComponent.vue'
+import '../semantic/dist/semantic.min.css'
 
 Vue.config.productionTip = false
 

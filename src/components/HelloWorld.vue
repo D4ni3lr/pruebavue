@@ -25,7 +25,9 @@
             <primer-componente v-bind:parametro.sync="parametro"></primer-componente>
             <prueba-component></prueba-component>
             <http-component></http-component>
-            <jquery-component></jquery-component>
+            <jquery-component disabled="true"></jquery-component>
+            <semantic-component></semantic-component>
+            <button>Muestra</button>
         </div>
     </div>
 </template>
@@ -35,6 +37,7 @@
   import PrimerComponente from './PrimerComponente.vue'
   import HttpComponent from './HttpComponent/HttpComponent.vue'
   import JqueryComponent from './JqueryComponent/JqueryComponent.vue'
+  import SemanticComponent from './SemanticComponent/SemanticComponent.vue'
 
   export default {
     name: 'HelloWorld',
@@ -48,7 +51,8 @@
       HttpComponent,
       intro,
       PrimerComponente,
-      JqueryComponent
+      JqueryComponent,
+      SemanticComponent
     }
   }
 </script>

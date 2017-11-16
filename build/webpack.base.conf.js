@@ -25,6 +25,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      /* Semantic */
+      'semantic': path.resolve(__dirname, '../semantic/dist/semantic.min.js'),
     }
   },
   module: {
@@ -74,5 +76,13 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      // jquery
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    }),
+  ]
 }
