@@ -7,7 +7,17 @@
   export default {
     data () {
       return {
-        classes: classes
+        classes: classes,
+        opciones: {
+          v1: true,
+          v2: true,
+          v3: true,
+          v4: true,
+          v5: true,
+          v6: true,
+          v7: true,
+          v8: true
+        }
       }
     },
     mounted () {
@@ -16,6 +26,7 @@
         on: 'hover'
       })
 
+      $('.ui.sidebar').sidebar('attach events', '.sidebarToggle')
 
       $('.main.menu').visibility({
         type: 'fixed'
