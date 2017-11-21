@@ -9,12 +9,12 @@
       return {
         classes: classes,
         opciones: {
-          v1: true,
+          v1: false,
           v2: true,
-          v3: true,
+          v3: false,
           v4: true,
           v5: true,
-          v6: true,
+          v6: false,
           v7: true,
           v8: true
         }

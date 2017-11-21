@@ -49,7 +49,7 @@
             </div>
         </a>
     </div>
-    <div class="ui container" :class="classes">
+    <div class="ui container">
         <div class="ui small text menu">
             <div class="header item">
                 <div class="middle aligned content">
@@ -66,11 +66,12 @@
             </div>
 
             <div class="right menu">
-                <a href="#" class="item">Clientes</a>
-                <a href="#" class="item">Llamadas</a>
-                <a href="#" class="item">Llamadas</a>
-                <a href="#" class="item">Facturas</a>
-                <a href="#" class="item">Reportes</a>
+
+                <a href="#" class="item" v-if="opciones.v2">Clientes</a>
+                <a href="#" class="item" v-if="opciones.v2">Llamadas</a>
+                <a href="#" class="item" v-if="opciones.v2">Llamadas</a>
+                <a href="#" class="item" v-if="opciones.v2">Facturas</a>
+                <a href="#" class="item" v-if="opciones.v2">Reportes</a>
                 <div class="header item">
 
                 </div>
@@ -102,7 +103,7 @@
             </div>
         </div>
 
-        <div class="ui attached stackable menu">
+        <div class="ui attached stackable menu" v-if="opciones.v3">
             <div class="ui container">
                 <a href="#" class="item">Clientes</a>
                 <a href="#" class="item">Llamadas</a>
@@ -114,7 +115,7 @@
 
     </div>
 
-    <div class="ui attached stackable menu">
+    <div class="ui attached stackable menu" v-if="opciones.v4">
         <div class="ui container">
             <a href="#" class="item">Clientes</a>
             <a href="#" class="item">Llamadas</a>
@@ -129,13 +130,13 @@
         <div class="ui segment basic">
             <div class="ui grid">
                 <div class="eight wide column middle aligned content">
-                        <div class="header">
-                            <h1>Clientes</h1>
-                        </div>
+                    <div class="header">
+                        <h1>Clientes</h1>
+                    </div>
                 </div>
                 <div class="eight wide column">
                     <div class="ui right floated small text menu">
-                        <div class="ui dropdown item">
+                        <div class="ui dropdown item" v-if="opciones.v5">
                             Opciones
                             <i class="dropdown icon"></i>
                             <div class="menu">
@@ -145,14 +146,14 @@
                             </div>
                         </div>
                         <div class="item">
-                            <div class="ui menu small">
+                            <div class="ui menu small" v-if="opciones.v6">
                                 <a href="#" class="item">Prueba</a>
                                 <a href="#" class="item">Prueba</a>
                                 <a href="#" class="item">Prueba</a>
                             </div>
                         </div>
                         <div class="item">
-                            <div class="ui buttons small">
+                            <div class="ui buttons small" v-if="opciones.v7">
                                 <button class="ui button">One</button>
                                 <button class="ui button">Two</button>
                                 <button class="ui button">Three</button>
@@ -163,10 +164,48 @@
             </div>
 
             <div class="ui clearing divider"></div>
+            <table class="ui selectable celled table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>No Action</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>Jamie</td>
+                    <td>Approved</td>
+                    <td>Requires call</td>
+                </tr>
+                <tr>
+                    <td>Jill</td>
+                    <td>Denied</td>
+                    <td>None</td>
+                </tr>
+                <tr class="warning">
+                    <td>John</td>
+                    <td>No Action</td>
+                    <td>None</td>
+                </tr>
+                <tr>
+                    <td>Jamie</td>
+                    <td class="positive">Approved</td>
+                    <td class="warning">Requires call</td>
+                </tr>
+                <tr>
+                    <td>Jill</td>
+                    <td class="negative">Denied</td>
+                    <td>None</td>
+                </tr>
+                </tbody>
+            </table>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium beatae delectus dignissimos dolorum
-                fugit natus obcaecati quibusdam vero. Accusantium beatae, blanditiis cupiditate deleniti eum incidunt
-                nemo omnis voluptate. Dicta, enim.</p>
         </div>
     </div>
 
