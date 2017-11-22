@@ -1,5 +1,5 @@
-<div>
-    <div class="ui right  sidebar inverted vertical menu">
+<div class="pushable compContent">
+    <div class="ui right sidebar inverted vertical menu">
         <a class="item">
             <div class="ui checkbox">
                 <input id="v1" type="checkbox" name="v1" v-model="opciones.v1">
@@ -49,61 +49,93 @@
             </div>
         </a>
     </div>
-    <div class="ui container">
-        <div class="ui small text menu">
-            <div class="header item">
-                <div class="middle aligned content">
-                    <img class="ui small image" src="static/Logo_dytnet.png">
-                </div>
-            </div>
-
-            <div class="menu" v-if="opciones.v1">
-                <a href="#" class="item">Clientes</a>
-                <a href="#" class="item">Llamadas</a>
-                <a href="#" class="item">Llamadas</a>
-                <a href="#" class="item">Facturas</a>
-                <a href="#" class="item">Reportes</a>
-            </div>
-
-            <div class="right menu">
-
-                <a href="#" class="item" v-if="opciones.v2">Clientes</a>
-                <a href="#" class="item" v-if="opciones.v2">Llamadas</a>
-                <a href="#" class="item" v-if="opciones.v2">Llamadas</a>
-                <a href="#" class="item" v-if="opciones.v2">Facturas</a>
-                <a href="#" class="item" v-if="opciones.v2">Reportes</a>
+    <div class="pusher">
+        <div class="ui container">
+            <div class="ui small text menu">
                 <div class="header item">
-
-                </div>
-                <div id="profileMenu" class="ui dropdown item">
-                    <img class="ui mini circular image" src="static/profile.png">
                     <div class="middle aligned content">
-                        Daniel Ramirez
+                        <img class="ui small image" src="static/Logo_dytnet.png">
                     </div>
-                    <i class="ellipsis vertical icon"></i>
-                    <div class="menu">
-                        <div class="item" @click.stop="fluido">
-                            <i class="maximize icon"></i>
-                            Pantalla completa
+                </div>
+
+                <div class="menu" v-if="opciones.v1">
+                    <a href="#" class="item">Clientes</a>
+                    <a href="#" class="item">Llamadas</a>
+                    <a href="#" class="item">Llamadas</a>
+                    <a href="#" class="item">Facturas</a>
+                    <a href="#" class="item">Reportes</a>
+                </div>
+
+                <div class="right menu">
+
+                    <a href="#" v-if="opciones.v2" class="item mobile hidden" @click="fluido">
+                        <i class="maximize icon"></i>
+                        Pantalla completa
+                    </a>
+                    <a href="#" v-if="opciones.v2" class="item mobile hidden">
+                        <i class="user icon"></i>
+                        Perfil
+                    </a>
+                    <a href="#" v-if="opciones.v2" class="item mobile hidden sidebarToggle">
+                        <i class="user icon"></i>
+                        Ajustes
+                    </a>
+                    <a href="#" v-if="opciones.v2" class="item mobile hidden">
+                        <i class="icon sign out"></i>
+                        Cerrar sesion
+                    </a>
+
+                    <div class="header item">
+
+                    </div>
+
+                    <div class="item mobile hidden">
+                        <img class="ui mini circular image" src="static/profile.png">
+                        <div class="text">
+                            Daniel Ramirez
                         </div>
-                        <div class="item">
-                            <i class="user icon"></i>
-                            Perfil
-                        </div>
-                        <div class="item sidebarToggle">
-                            <i class="user icon"></i>
-                            Ajustes
-                        </div>
-                        <div class="item">
-                            <i class="icon sign out"></i>
-                            Cerrar sesion
+                    </div>
+
+                    <div id="profileMenu" class="ui dropdown item mobile only">
+                        <img class="ui mini circular image" src="static/profile.png">
+                            Daniel Ramirez
+                        <i class="ellipsis vertical icon"></i>
+                        <div class="menu">
+                            <div class="item" @click="fluido">
+                                <i class="maximize icon"></i>
+                                Pantalla completa
+                            </div>
+                            <div class="item">
+                                <i class="user icon"></i>
+                                Perfil
+                            </div>
+                            <div class="item sidebarToggle">
+                                <i class="user icon"></i>
+                                Ajustes
+                            </div>
+                            <div class="item">
+                                <i class="icon sign out"></i>
+                                Cerrar sesion
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            <div class="ui attached stackable menu" v-if="opciones.v3">
+                <div class="ui container">
+                    <a href="#" class="item">Clientes</a>
+                    <a href="#" class="item">Llamadas</a>
+                    <a href="#" class="item">Llamadas</a>
+                    <a href="#" class="item">Facturas</a>
+                    <a href="#" class="item">Reportes</a>
+                </div>
+            </div>
+
         </div>
 
-        <div class="ui attached stackable menu" v-if="opciones.v3">
+        <div class="ui attached stackable menu" v-if="opciones.v4">
             <div class="ui container">
                 <a href="#" class="item">Clientes</a>
                 <a href="#" class="item">Llamadas</a>
@@ -113,335 +145,381 @@
             </div>
         </div>
 
-    </div>
+        <div class="ui container" :class="classes">
 
-    <div class="ui attached stackable menu" v-if="opciones.v4">
-        <div class="ui container">
-            <a href="#" class="item">Clientes</a>
-            <a href="#" class="item">Llamadas</a>
-            <a href="#" class="item">Llamadas</a>
-            <a href="#" class="item">Facturas</a>
-            <a href="#" class="item">Reportes</a>
-        </div>
-    </div>
-
-    <div class="ui container" :class="classes">
-
-        <div class="ui segment basic">
-            <div class="ui grid">
-                <div class="eight wide column middle aligned content">
-                    <div class="header">
-                        <h1>Clientes</h1>
+            <div class="ui segment basic">
+                <div class="ui grid">
+                    <div class="eight wide column middle aligned content">
+                        <div class="header">
+                            <h1>Clientes</h1>
+                        </div>
+                    </div>
+                    <div class="eight wide column">
+                        <div class="ui right floated small text menu">
+                            <div class="ui dropdown item" v-if="opciones.v5">
+                                Opciones
+                                <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <div class="item">Applications</div>
+                                    <div class="item">International Students</div>
+                                    <div class="item">Scholarships</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="ui menu small" v-if="opciones.v6">
+                                    <a href="#" class="item">Prueba</a>
+                                    <a href="#" class="item">Prueba</a>
+                                    <a href="#" class="item">Prueba</a>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="ui buttons small" v-if="opciones.v7">
+                                    <button class="ui button">One</button>
+                                    <button class="ui button">Two</button>
+                                    <button class="ui button">Three</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="eight wide column">
-                    <div class="ui right floated small text menu">
-                        <div class="ui dropdown item" v-if="opciones.v5">
-                            Opciones
+
+                <div class="ui clearing divider"></div>
+                <table class="ui selectable celled table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>John</td>
+                        <td>No Action</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td>Jamie</td>
+                        <td>Approved</td>
+                        <td>Requires call</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Denied</td>
+                        <td>None</td>
+                    </tr>
+                    <tr class="warning">
+                        <td>John</td>
+                        <td>No Action</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td>Jamie</td>
+                        <td class="positive">Approved</td>
+                        <td class="warning">Requires call</td>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td class="negative">Denied</td>
+                        <td>None</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+        <div class="ui flowing basic admission popup">
+            <div class="ui three column relaxed divided grid">
+                <div class="column">
+                    <h4 class="ui header">Business</h4>
+                    <div class="ui link list">
+                        <a class="item">Design &amp; Urban Ecologies</a>
+                        <a class="item">Fashion Design</a>
+                        <a class="item">Fine Art</a>
+                        <a class="item">Strategic Design</a>
+                    </div>
+                </div>
+                <div class="column">
+                    <h4 class="ui header">Liberal Arts</h4>
+                    <div class="ui link list">
+                        <a class="item">Anthropology</a>
+                        <a class="item">Economics</a>
+                        <a class="item">Media Studies</a>
+                        <a class="item">Philosophy</a>
+                    </div>
+                </div>
+                <div class="column">
+                    <h4 class="ui header">Social Sciences</h4>
+                    <div class="ui link list">
+                        <a class="item">Food Studies</a>
+                        <a class="item">Journalism</a>
+                        <a class="item">Non Profit Management</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui borderless main menu">
+            <div class="ui text container">
+                <div href="#" class="header item">
+                    <img class="logo" src="https://semantic-ui.com/examples/assets/images/logo.png">
+                    Project Name
+                </div>
+                <a href="#" class="item" @click="fluido">Fluido ({{classes.fluid}})</a>
+                <a href="#" class="item">Blog</a>
+                <a href="#" class="item">Articles</a>
+                <a href="#" class="ui right floated dropdown item">
+                    Dropdown <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item">Link Item</div>
+                        <div class="item">Link Item</div>
+                        <div class="divider"></div>
+                        <div class="header">Header Item</div>
+                        <div class="item">
                             <i class="dropdown icon"></i>
+                            Sub Menu
                             <div class="menu">
-                                <div class="item">Applications</div>
-                                <div class="item">International Students</div>
-                                <div class="item">Scholarships</div>
+                                <div class="item">Link Item</div>
+                                <div class="item">Link Item</div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="ui menu small" v-if="opciones.v6">
-                                <a href="#" class="item">Prueba</a>
-                                <a href="#" class="item">Prueba</a>
-                                <a href="#" class="item">Prueba</a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ui buttons small" v-if="opciones.v7">
-                                <button class="ui button">One</button>
-                                <button class="ui button">Two</button>
-                                <button class="ui button">Three</button>
-                            </div>
-                        </div>
+                        <div class="item">Link Item</div>
                     </div>
-                </div>
-            </div>
 
-            <div class="ui clearing divider"></div>
-            <table class="ui selectable celled table">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Notes</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>John</td>
-                    <td>No Action</td>
-                    <td>None</td>
-                </tr>
-                <tr>
-                    <td>Jamie</td>
-                    <td>Approved</td>
-                    <td>Requires call</td>
-                </tr>
-                <tr>
-                    <td>Jill</td>
-                    <td>Denied</td>
-                    <td>None</td>
-                </tr>
-                <tr class="warning">
-                    <td>John</td>
-                    <td>No Action</td>
-                    <td>None</td>
-                </tr>
-                <tr>
-                    <td>Jamie</td>
-                    <td class="positive">Approved</td>
-                    <td class="warning">Requires call</td>
-                </tr>
-                <tr>
-                    <td>Jill</td>
-                    <td class="negative">Denied</td>
-                    <td>None</td>
-                </tr>
-                </tbody>
-            </table>
-
-        </div>
-    </div>
-
-
-    <div class="ui flowing basic admission popup">
-        <div class="ui three column relaxed divided grid">
-            <div class="column">
-                <h4 class="ui header">Business</h4>
-                <div class="ui link list">
-                    <a class="item">Design &amp; Urban Ecologies</a>
-                    <a class="item">Fashion Design</a>
-                    <a class="item">Fine Art</a>
-                    <a class="item">Strategic Design</a>
-                </div>
-            </div>
-            <div class="column">
-                <h4 class="ui header">Liberal Arts</h4>
-                <div class="ui link list">
-                    <a class="item">Anthropology</a>
-                    <a class="item">Economics</a>
-                    <a class="item">Media Studies</a>
-                    <a class="item">Philosophy</a>
-                </div>
-            </div>
-            <div class="column">
-                <h4 class="ui header">Social Sciences</h4>
-                <div class="ui link list">
-                    <a class="item">Food Studies</a>
-                    <a class="item">Journalism</a>
-                    <a class="item">Non Profit Management</a>
-                </div>
+                </a>
             </div>
         </div>
-    </div>
-
-    <div class="ui borderless main menu">
         <div class="ui text container">
-            <div href="#" class="header item">
-                <img class="logo" src="https://semantic-ui.com/examples/assets/images/logo.png">
-                Project Name
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                Aenean
+                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                Donec
+                non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                neque
+                egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+                accumsan
+                porttitor, facilisis luctus, metus</p>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                Aenean
+                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                Donec
+                non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                neque
+                egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+                accumsan
+                porttitor, facilisis luctus, metus</p>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                Aenean
+                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                Donec
+                non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                neque
+                egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+                accumsan
+                porttitor, facilisis luctus, metus</p>
+            <div class="overlay">
+                <div class="ui labeled icon vertical menu">
+                    <a class="item"><i class="twitter icon"></i> Tweet</a>
+                    <a class="item"><i class="facebook icon"></i> Share</a>
+                    <a class="item"><i class="mail icon"></i> E-mail</a>
+                </div>
             </div>
-            <a href="#" class="item" @click.stop="fluido">Fluido ({{classes.fluid}})</a>
-            <a href="#" class="item">Blog</a>
-            <a href="#" class="item">Articles</a>
-            <a href="#" class="ui right floated dropdown item">
-                Dropdown <i class="dropdown icon"></i>
-                <div class="menu">
-                    <div class="item">Link Item</div>
-                    <div class="item">Link Item</div>
-                    <div class="divider"></div>
-                    <div class="header">Header Item</div>
-                    <div class="item">
-                        <i class="dropdown icon"></i>
-                        Sub Menu
-                        <div class="menu">
-                            <div class="item">Link Item</div>
-                            <div class="item">Link Item</div>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                Aenean
+                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                Donec
+                non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                neque
+                egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+                accumsan
+                porttitor, facilisis luctus, metus</p>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                Aenean
+                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                Donec
+                non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                neque
+                egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+                accumsan
+                porttitor, facilisis luctus, metus</p>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                Aenean
+                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                Donec
+                non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                neque
+                egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+                accumsan
+                porttitor, facilisis luctus, metus</p>
+            <img class="ui medium left floated image"
+                 data-src="https://semantic-ui.com/examples/assets/images/wireframe/square-image.png">
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                Aenean
+                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                Donec
+                non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                neque
+                egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+                accumsan
+                porttitor, facilisis luctus, metus</p>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                <img class="ui medium right floated image"
+                     data-src="https://semantic-ui.com/examples/assets/images/wireframe/square-image.png">
+                Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo
+                vitae,
+                ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+                sagittis
+                tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque
+                id
+                cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                dui
+                mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                Aenean
+                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                Donec
+                non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                neque
+                egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+                accumsan
+                porttitor, facilisis luctus, metus</p>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                Aenean
+                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                Donec
+                non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                neque
+                egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+                accumsan
+                porttitor, facilisis luctus, metus</p>
+            <img class="ui medium left floated image"
+                 data-src="https://semantic-ui.com/examples/assets/images/wireframe/square-image.png">
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                Aenean
+                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                Donec
+                non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                neque
+                egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+                accumsan
+                porttitor, facilisis luctus, metus</p>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                <img class="ui medium right floated image"
+                     data-src="https://semantic-ui.com/examples/assets/images/wireframe/square-image.png">
+                Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo
+                vitae,
+                ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+                sagittis
+                tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque
+                id
+                cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam
+                dui
+                mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                Aenean
+                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                Donec
+                non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                neque
+                egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+                accumsan
+                porttitor, facilisis luctus, metus</p>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
+                tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
+                semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
+                ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+                Aenean
+                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+                Donec
+                non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                neque
+                egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis,
+                accumsan
+                porttitor, facilisis luctus, metus</p>
+        </div>
+
+        <div class="ui inverted vertical footer segment">
+            <div class="ui center aligned container">
+                <div class="ui stackable inverted divided grid">
+                    <div class="three wide column">
+                        <h4 class="ui inverted header">Group 1</h4>
+                        <div class="ui inverted link list">
+                            <a href="#" class="item">Link One</a>
+                            <a href="#" class="item">Link Two</a>
+                            <a href="#" class="item">Link Three</a>
+                            <a href="#" class="item">Link Four</a>
                         </div>
                     </div>
-                    <div class="item">Link Item</div>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="ui text container">
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
-            ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
-            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
-            non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-            egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-            porttitor, facilisis luctus, metus</p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
-            ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
-            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
-            non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-            egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-            porttitor, facilisis luctus, metus</p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
-            ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
-            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
-            non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-            egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-            porttitor, facilisis luctus, metus</p>
-        <div class="overlay">
-            <div class="ui labeled icon vertical menu">
-                <a class="item"><i class="twitter icon"></i> Tweet</a>
-                <a class="item"><i class="facebook icon"></i> Share</a>
-                <a class="item"><i class="mail icon"></i> E-mail</a>
-            </div>
-        </div>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
-            ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
-            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
-            non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-            egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-            porttitor, facilisis luctus, metus</p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
-            ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
-            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
-            non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-            egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-            porttitor, facilisis luctus, metus</p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
-            ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
-            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
-            non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-            egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-            porttitor, facilisis luctus, metus</p>
-        <img class="ui medium left floated image"
-             data-src="https://semantic-ui.com/examples/assets/images/wireframe/square-image.png">
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
-            ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
-            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
-            non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-            egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-            porttitor, facilisis luctus, metus</p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-            <img class="ui medium right floated image"
-                 data-src="https://semantic-ui.com/examples/assets/images/wireframe/square-image.png">
-            Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae,
-            ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis
-            tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id
-            cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui
-            mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
-            ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
-            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
-            non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-            egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-            porttitor, facilisis luctus, metus</p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
-            ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
-            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
-            non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-            egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-            porttitor, facilisis luctus, metus</p>
-        <img class="ui medium left floated image"
-             data-src="https://semantic-ui.com/examples/assets/images/wireframe/square-image.png">
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
-            ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
-            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
-            non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-            egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-            porttitor, facilisis luctus, metus</p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-            <img class="ui medium right floated image"
-                 data-src="https://semantic-ui.com/examples/assets/images/wireframe/square-image.png">
-            Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae,
-            ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis
-            tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id
-            cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui
-            mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
-            ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
-            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
-            non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-            egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-            porttitor, facilisis luctus, metus</p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum
-            tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-            semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien
-            ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
-            fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec
-            non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-            egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-            porttitor, facilisis luctus, metus</p>
-    </div>
-
-    <div class="ui inverted vertical footer segment">
-        <div class="ui center aligned container">
-            <div class="ui stackable inverted divided grid">
-                <div class="three wide column">
-                    <h4 class="ui inverted header">Group 1</h4>
-                    <div class="ui inverted link list">
-                        <a href="#" class="item">Link One</a>
-                        <a href="#" class="item">Link Two</a>
-                        <a href="#" class="item">Link Three</a>
-                        <a href="#" class="item">Link Four</a>
+                    <div class="three wide column">
+                        <h4 class="ui inverted header">Group 2</h4>
+                        <div class="ui inverted link list">
+                            <a href="#" class="item">Link One</a>
+                            <a href="#" class="item">Link Two</a>
+                            <a href="#" class="item">Link Three</a>
+                            <a href="#" class="item">Link Four</a>
+                        </div>
+                    </div>
+                    <div class="three wide column">
+                        <h4 class="ui inverted header">Group 3</h4>
+                        <div class="ui inverted link list">
+                            <a href="#" class="item">Link One</a>
+                            <a href="#" class="item">Link Two</a>
+                            <a href="#" class="item">Link Three</a>
+                            <a href="#" class="item">Link Four</a>
+                        </div>
+                    </div>
+                    <div class="seven wide column">
+                        <h4 class="ui inverted header">Footer Header</h4>
+                        <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
                     </div>
                 </div>
-                <div class="three wide column">
-                    <h4 class="ui inverted header">Group 2</h4>
-                    <div class="ui inverted link list">
-                        <a href="#" class="item">Link One</a>
-                        <a href="#" class="item">Link Two</a>
-                        <a href="#" class="item">Link Three</a>
-                        <a href="#" class="item">Link Four</a>
-                    </div>
+                <div class="ui inverted section divider"></div>
+                <img src="https://semantic-ui.com/examples/assets/images/logo.png" class="ui centered mini image">
+                <div class="ui horizontal inverted small divided link list">
+                    <a class="item" href="#">Site Map</a>
+                    <a class="item" href="#">Contact Us</a>
+                    <a class="item" href="#">Terms and Conditions</a>
+                    <a class="item" href="#">Privacy Policy</a>
                 </div>
-                <div class="three wide column">
-                    <h4 class="ui inverted header">Group 3</h4>
-                    <div class="ui inverted link list">
-                        <a href="#" class="item">Link One</a>
-                        <a href="#" class="item">Link Two</a>
-                        <a href="#" class="item">Link Three</a>
-                        <a href="#" class="item">Link Four</a>
-                    </div>
-                </div>
-                <div class="seven wide column">
-                    <h4 class="ui inverted header">Footer Header</h4>
-                    <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-                </div>
-            </div>
-            <div class="ui inverted section divider"></div>
-            <img src="https://semantic-ui.com/examples/assets/images/logo.png" class="ui centered mini image">
-            <div class="ui horizontal inverted small divided link list">
-                <a class="item" href="#">Site Map</a>
-                <a class="item" href="#">Contact Us</a>
-                <a class="item" href="#">Terms and Conditions</a>
-                <a class="item" href="#">Privacy Policy</a>
             </div>
         </div>
     </div>

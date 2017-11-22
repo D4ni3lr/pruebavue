@@ -26,7 +26,11 @@
         on: 'hover'
       })
 
-      $('.ui.sidebar').sidebar('attach events', '.sidebarToggle')
+      $('.ui.sidebar')
+        .sidebar({
+          context: $('.compContent')
+        })
+        .sidebar('attach events', '.sidebarToggle')
 
       $('.main.menu').visibility({
         type: 'fixed'
