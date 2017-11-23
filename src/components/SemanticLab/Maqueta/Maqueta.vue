@@ -20,12 +20,12 @@
         }
       }
     },
-    mounted () {
 
-      $('#profileMenu').dropdown({
+    mounted () {
+      jQuery('#profileMenu').dropdown({
         on: 'hover'
       })
-
+  
       $('.ui.sidebar')
         .sidebar({
           context: $('.compContent')
@@ -58,16 +58,12 @@
   }
 </script>
 <style>
-    @media  only screen and (min-width: 768px) {
-        .ui.container.fluid{
-            padding-left: 1em!important;
-            padding-right: 1em!important;
+    @media only screen and (min-width: 768px) {
+        .ui.container.fluid {
+            padding-left: 1em !important;
+            padding-right: 1em !important;
         }
     }
-
-
-
-
 
     .main.container {
         margin-top: 2em;
