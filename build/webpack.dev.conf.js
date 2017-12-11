@@ -71,6 +71,21 @@ module.exports = new Promise((resolve, reject) => {
         : undefined
       }))
 
+      devWebpackConfig.module.rules.push({
+        test: require.resolve('jquery'),
+        use: [{
+          loader: 'expose-loader',
+          options: '$'
+        }]
+      })
+
+      devWebpackConfig.plugins.push(new webpack.ProvidePlugin({
+        // jquery
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery'
+      }))
+
       resolve(devWebpackConfig)
     }
   })

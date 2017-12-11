@@ -7,6 +7,7 @@ import './components/PruebaComponent.js'
 import HttpComponent from './components/HttpComponent/HttpComponent.vue'
 import '../semantic/dist/semantic.min.css'
 
+require('jquery')
 require('semantic')
 
 Vue.config.productionTip = false
@@ -16,5 +17,5 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App, HttpComponent }
+  components: {App, HttpComponent}
 })

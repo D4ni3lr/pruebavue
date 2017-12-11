@@ -75,22 +75,7 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      },
-      {
-        test: require.resolve('jquery'),
-        use: [{
-          loader: 'expose-loader',
-          options: '$'
-        }]
       }
     ]
   },
-  plugins: [
-    new webpack.ProvidePlugin({
-      // jquery
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    }),
-  ]
 }
